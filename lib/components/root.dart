@@ -32,7 +32,10 @@ class Navbar implements ssr.Component {
   String render() {
     return """
     <nav style="$navStyle">
-      <a href="/"> home </a>
+      <ul>
+        <li><a href="/"> home </a></li>
+        <li><a href="/player/manager"> manager </a></li>
+      </ul>
     </nav>
     """;
   }

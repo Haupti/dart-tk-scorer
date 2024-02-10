@@ -1,15 +1,28 @@
 import 'package:ssr/ssr.dart' as ssr;
 import 'package:ssr/html.dart' as ssr;
 import 'components/root.dart';
+import 'dataprovider/repository.dart' as repo;
+import 'domain/player.dart';
 import 'dart:io';
-
-
 
 class HomePageContent implements ssr.Component{
 
   String tableStyle = ssr.Style(maxWidth:"1000px").inline();
   @override
   String render() {
+    Map<String, Player> players = repo.getPlayers();
+    players.values.toList().sort((p1, p2) => p1.points.compareTo(p2.points));
+    List<String> elems = [];
+    for(final (index, player) in players.values.indexed) {
+        elems.add("""
+          <tr>
+            <th scope="row"> ${index+1} </th>
+            <td>${player.points}</td>
+            <td>${player.name}</td>
+          </tr>
+        """);
+    }
+
     return """
     <center>
     <table style="$tableStyle">
@@ -21,21 +34,7 @@ class HomePageContent implements ssr.Component{
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Cell</td>
-          <td>Cell</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Cell</td>
-          <td>Cell</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Cell</td>
-          <td>Cell</td>
-        </tr>
+        ${elems.join("\n")}
       </tbody>
       <tfoot>
         <tr>

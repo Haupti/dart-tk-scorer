@@ -7,7 +7,8 @@ import 'package:ftk/dataprovider/repository.dart' as repo;
 ssr.RequestHandler _managerDeletePlayerApi() {
   return ssr.RequestHandler(path: "/api/player/delete", method: ssr.RequestMethod.mPost, handler: (ssr.SsrRequest request, ssr.SsrResponse response) { 
     String? value = extractId(request.requestData);
-    if(value == null){
+    List<Player> players = repo.getPlayers().values.toList();
+    if(value == null || players.any((p) => p.name == value)){
       ssr.clientErrorResponse(response);
       return;
     } else {

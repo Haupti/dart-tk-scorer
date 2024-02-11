@@ -34,6 +34,7 @@ class Navbar implements ssr.Component {
     <nav style="$navStyle">
       <ul>
         <li><a href="/"> home </a></li>
+        <li><a href="/game/add"> add game </a></li>
         <li><a href="/player/manager"> manager </a></li>
       </ul>
     </nav>

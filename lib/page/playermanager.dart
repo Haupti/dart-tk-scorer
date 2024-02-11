@@ -15,7 +15,14 @@ class PlayerManagerContent implements ssr.Component{
     return SimpleComponent("""
               <tr id="$selectId">
                 <td>
-                  <button hx-post="/api/player/delete" hx-vals='{"playerid":"${player.id.toString()}"}' hx-swap="outerHTML" hx-target="[id='$selectId']" class="contrast" style="width: 100px;" role="button">
+                  <button
+                     hx-post="/api/player/delete"
+                     hx-vals='{"playerid":"${player.id.toString()}"}'
+                     hx-swap="outerHTML" hx-target="[id='$selectId']"
+                     class="contrast"
+                     style="width: 100px;"
+                     role="button"
+                     hx-confirm="Are you sure?">
                     delete
                   </button>
                 </td>

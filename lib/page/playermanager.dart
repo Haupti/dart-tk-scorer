@@ -10,14 +10,16 @@ class PlayerManagerContent implements ssr.Component{
   }
 
   static ssr.Component playerRow(Player player) {
+    String id = player.id.hashCode.toString();
+    String selectId = "${id}select";
     return SimpleComponent("""
-              <tr id="${player.id}-row">
+              <tr id="$selectId">
                 <td>
-                  <button hx-post="/api/player/delete" hx-swap="outerHTML" hx-target="#${player.id}-row" class="contrast" style="width: 100px;" role="button">
+                  <button hx-post="/api/player/delete" hx-vals='{"playerid":"${player.id.toString()}"}' hx-swap="outerHTML" hx-target="[id='$selectId']" class="contrast" style="width: 100px;" role="button">
                     delete
                   </button>
                 </td>
-                <td id="${player.id}-id">${player.id}</td>
+                <td>${player.id}</td>
                 <td>${player.name}</td>
               </tr>
               """);
@@ -39,11 +41,13 @@ class PlayerManagerContent implements ssr.Component{
         </thead>
         <tbody>
             ${ssr.renderMany(players.map((e) => playerRow(e)).toList())}
+            <form>
             <tr id="player-add-row">
-              <td><button hx-post="/api/player/add" hx-swap="beforebegin" hx-include="[name='new-player-name']" hx-target="#player-add-row"> save </button></td>
+              <td><input type="submit" value="save" hx-post="/api/player/add" hx-swap="beforebegin" hx-include="[name='new-player-name']" hx-target="#player-add-row"/></td>
               <td></td>
-              <td><input type="text" name="new-player-name" placeholder="new player name" pattern="[a-zA-Z ]{3,100}"></td>
+              <td><input type="text" name="new-player-name" placeholder="new player name" pattern="[a-zA-Z0-9]+([ ]?[a-zA-Z0-9]+)?"></td>
             </tr>
+            </form>
           </tbody>
       </table>
     """;

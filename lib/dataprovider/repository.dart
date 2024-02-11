@@ -15,8 +15,10 @@ void _savePlayers(){
     _playersFile.createSync(recursive: true);
   }
 
-  String jsonPlayers = jsonEncode(_cachePlayers?.values ?? []);
-  _playersFile.writeAsStringSync(jsonPlayers);
+  if(_cachePlayers?.values != null || _cachePlayers!.values.isNotEmpty){
+    String jsonPlayers = jsonEncode(_cachePlayers!.values.map((e) => e.toJson()).toList());
+    _playersFile.writeAsStringSync(jsonPlayers);
+  }
 }
 
 void _loadPlayers() {
@@ -43,6 +45,12 @@ void _loadPlayers() {
 void upsertPlayer(Player player){
   _loadPlayers();
   _cachePlayers![player.id.toString()] = player;
+  _savePlayers();
+}
+
+void removePlayer(Id id){
+  _loadPlayers();
+  _cachePlayers?.remove(id.toString());
   _savePlayers();
 }
 

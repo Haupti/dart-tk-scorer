@@ -1,3 +1,5 @@
+import 'package:nanoid/nanoid.dart';
+
 class Id{
   final String _id;
 
@@ -17,10 +19,14 @@ class Player {
 
   Player({required this.name, required this.points, required this.id});
 
-  Map<String, dynamic> toJson(){
+  static Player createNewUnknownPlayer(String name){
+    return Player(name: name, points: 0, id: Id(nanoid()));
+  }
+
+  Map<String, String> toJson(){
     return {
       "name": name,
-      "points": points,
+      "points": points.toString(),
       "id": id.toString(),
     };
   }
@@ -29,7 +35,7 @@ class Player {
     return Player(
       id: Id(json["id"] as String),
       name: json["name"] as String,
-      points: int.parse(json["points"]),
+      points: int.parse(json["points"] as String),
     );
   }
 }

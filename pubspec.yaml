@@ -13,7 +13,7 @@ dependencies:
   ssr:
     git:
       url: git@github.com:Haupti/dart-ssr.git
-      ref: cbc7b959cde76235c6a04f4d233a126c20464bd1 # commit hash
+      ref: 9094b405e846dba68b8e8a176cd92fa444c7ed61 # commit hash
 
 
 dev_dependencies:

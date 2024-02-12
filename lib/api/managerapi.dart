@@ -1,9 +1,6 @@
-import 'dart:io';
-
 import 'package:ftk/domain/player.dart';
 import 'package:ftk/page/playermanager.dart';
 import 'package:ssr/ssr.dart' as ssr;
-import 'package:ssr/html.dart' as ssr;
 import 'package:ftk/dataprovider/repository.dart' as repo;
 
 ssr.RequestHandler _managerDeletePlayerApi() {
@@ -18,7 +15,7 @@ ssr.RequestHandler _managerDeletePlayerApi() {
         } else {
           Id playerId = Id(value);
           repo.removePlayer(playerId);
-          ssr.okPartialHtmlResponse(response, ssr.PartialHtml([PlayerManagerContent.playerDeleteSwap()]));
+          ssr.okPartialHtmlResponse(response, PlayerManagerContent.playerDeleteSwap());
         }
       }).setMinimumRole(ssr.AuthRole.admin);
 }
@@ -36,7 +33,7 @@ ssr.RequestHandler _managerPlayerAddApi() {
         } else {
           Player player = Player.createNewUnknownPlayer(value);
           repo.upsertPlayer(player);
-          ssr.okPartialHtmlResponse(response, ssr.PartialHtml([PlayerManagerContent.playerRow(player)]));
+          ssr.okPartialHtmlResponse(response, PlayerManagerContent.playerRow(player));
         }
       }).setMinimumRole(ssr.AuthRole.admin);
 }
@@ -53,13 +50,4 @@ String? extractId(String? data) {
   return match?[0];
 }
 
-ssr.RequestHandler _addMatchApi() {
-  return ssr.RequestHandler(
-      path: "/api/match/add",
-      method: ssr.RequestMethod.mPost,
-      handler: (ssr.SsrRequest request, ssr.SsrResponse response) {
-        print(request.requestData);
-      });
-}
-
-List<ssr.RequestHandler> managerApi = [_managerDeletePlayerApi(), _managerPlayerAddApi(), _addMatchApi()];
+List<ssr.RequestHandler> managerApi = [_managerDeletePlayerApi(), _managerPlayerAddApi()];

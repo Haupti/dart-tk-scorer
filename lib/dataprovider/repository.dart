@@ -7,7 +7,7 @@ File _playersFile = File("data/players.json");
 File _matchesFile = File("data/matches.json");
 
 Map<String, Player>? _cachePlayers;
-List<Match>? _cacheMatches;
+List<TkMatch>? _cacheMatches;
 
 
 void _savePlayers(){
@@ -79,20 +79,20 @@ void _loadMatches() {
     return;
   }
 
-  List<Map<String, dynamic>> matchesJson = jsonDecode(content);
+  List<dynamic> matchesJson = jsonDecode(content);
   for(var matchJson in matchesJson) {
-    Match match = Match.fromJson(matchJson);
+    TkMatch match = TkMatch.fromJson(matchJson);
     _cacheMatches?.add(match);
   }
 }
 
-void upsertMatch(Match match){
+void upsertMatch(TkMatch match){
   _loadMatches();
   _cacheMatches?.add(match);
   _saveMatches();
 }
 
-List<Match> getMatches(){
+List<TkMatch> getMatches(){
   _loadMatches();
   return _cacheMatches!;
 }

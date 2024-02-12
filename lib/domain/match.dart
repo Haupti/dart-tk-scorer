@@ -15,14 +15,14 @@ enum Winner {
   }
 }
 
-class Match {
+class TkMatch {
   Id t1Player1;
   Id t1Player2;
   Id t2Player1;
   Id t2Player2;
   Winner winner;
 
-  Match({
+  TkMatch({
     required this.t1Player1,
     required this.t1Player2,
     required this.t2Player1,
@@ -40,8 +40,8 @@ class Match {
       };
   }
 
-  static Match fromJson(Map<String, dynamic> jsonMap){
-    return Match(
+  static TkMatch fromJson(Map<String, dynamic> jsonMap){
+    return TkMatch(
       t1Player1: Id(jsonMap["t1p1"] as String),
       t1Player2: Id(jsonMap["t1p2"] as String),
       t2Player1: Id(jsonMap["t2p1"] as String),

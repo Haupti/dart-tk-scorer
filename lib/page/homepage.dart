@@ -4,7 +4,6 @@ import 'package:ftk/dataprovider/repository.dart' as repo;
 
 class HomePageContent implements ssr.Component{
 
-  String tableStyle = ssr.Style(maxWidth:"1000px").inline();
   @override
   String render() {
     Map<String, Player> players = repo.getPlayers();
@@ -13,7 +12,7 @@ class HomePageContent implements ssr.Component{
     for(final (index, player) in players.values.indexed) {
         elems.add("""
           <tr>
-            <th scope="row"> ${index+1} </th>
+            <td>${index+1}</td>
             <td>${player.points}</td>
             <td>${player.name}</td>
           </tr>
@@ -21,27 +20,20 @@ class HomePageContent implements ssr.Component{
     }
 
     return """
-    <center>
-    <table style="$tableStyle">
-      <thead>
-        <tr>
-          <th scope="col">Rank</th>
-          <th scope="col">Points</th>
-          <th scope="col">Player</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${elems.join("\n")}
-      </tbody>
-      <tfoot>
-        <tr>
-          <th scope="col">Rank</th>
-          <td scope="col">Points</td>
-          <td scope="col">Player</td>
-        </tr>
-      </tfoot>
-    </table>
-    </center>
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Points</th>
+            <th scope="col">Player</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${elems.join("\n")}
+        </tbody>
+      </table>
+    </div>
   """;
   }
 }

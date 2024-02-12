@@ -15,15 +15,12 @@ class PlayerManagerContent implements ssr.Component{
     return SimpleComponent("""
               <tr id="$selectId">
                 <td>
-                  <button
+                  <button class="btn btn-error btn-action"
                      hx-post="/api/player/delete"
                      hx-vals='{"playerid":"${player.id.toString()}"}'
                      hx-swap="outerHTML" hx-target="[id='$selectId']"
-                     class="contrast"
-                     style="width: 100px;"
-                     role="button"
                      hx-confirm="Are you sure?">
-                    delete
+                     <i class="icon icon-delete"></i>
                   </button>
                 </td>
                 <td>${player.id}</td>
@@ -38,23 +35,23 @@ class PlayerManagerContent implements ssr.Component{
   String render() {
     List<Player> players = repo.getPlayers().values.toList();
     return """
-      <table>
+      <table class="table">
         <thead>
           <tr>
-            <td> </td>
-            <td> ID </td>
-            <td> name </td>
+            <th> </th>
+            <th> ID </th>
+            <th> name </th>
           <tr>
         </thead>
         <tbody>
-            ${ssr.renderMany(players.map((e) => playerRow(e)).toList())}
+          ${ssr.renderMany(players.map((e) => playerRow(e)).toList())}
+          <tr id="player-add-row">
             <form>
-            <tr id="player-add-row">
-              <td><input type="submit" value="save" hx-post="/api/player/add" hx-swap="beforebegin" hx-include="[name='new-player-name']" hx-target="#player-add-row"/></td>
+              <td><input class="btn btn-primary input-grop-btn" type="submit" value="save" hx-post="/api/player/add" hx-swap="beforebegin" hx-include="[name='new-player-name']" hx-target="#player-add-row"/></td>
               <td></td>
               <td><input type="text" name="new-player-name" placeholder="new player name" pattern="[a-zA-Z0-9]+([ ]?[a-zA-Z0-9]+)?"></td>
-            </tr>
             </form>
+          </tr>
           </tbody>
       </table>
     """;

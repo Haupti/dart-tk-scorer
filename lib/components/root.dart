@@ -9,13 +9,16 @@ String root(String title, String content){
         <META charset="UTF-8">
         <META name="viewport" content="width=device-width, initial-scale=1.0">
         <title> $title </title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
         <style>
         </style>
         </head>
       <body>
         ${Navbar().render()}
-        $content
+        <div class="p-centered" style="max-width:1000px;">
+          $content
+        </div>
       <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
       </body>
     </html>
@@ -27,17 +30,17 @@ ssr.RootPage ftkRoot(List<ssr.Component> components) {
 }
 
 class Navbar implements ssr.Component {
-  String navStyle = ssr.Style(padding: "10px", borderBottom: "1px solid ${Colors.black}").inline();
+  String navStyle = ssr.Style(padding: "16px", margin:"0 0 8px 0").inline();
   @override
   String render() {
     return """
-    <nav style="$navStyle">
-      <ul>
-        <li><a href="/"> home </a></li>
-        <li><a href="/game/add"> add game </a></li>
-        <li><a href="/player/manager"> manager </a></li>
-      </ul>
-    </nav>
+    <header class="navbar" style="$navStyle">
+      <section class="navbar-section">
+        <a class="btn btn-link" href="/"> home </a></li>
+        <a class="btn btn-link" href="/game/add"> add game </a></li>
+        <a class="btn btn-link" href="/player/manager"> manager </a></li>
+      </section>
+    </header>
     """;
   }
 }

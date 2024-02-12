@@ -18,11 +18,11 @@ void gameAddHandler(ssr.SsrRequest request, ssr.SsrResponse response) {
 }
 
 void ftk() {
-  List<ssr.RequestHandler> handlers =[
+  List<ssr.RequestHandler> handlers = [
     ssr.RequestHandler(path: "/", method: ssr.RequestMethod.mGet, handler: homeHandler).setMinimumRole(ssr.AuthRole.basic),
     ssr.RequestHandler(path: "/player/manager", method: ssr.RequestMethod.mGet, handler: playerManagerHandler).setMinimumRole(ssr.AuthRole.admin),
     ...managerApi,
-    ssr.RequestHandler(path: "/game/add", method: ssr.RequestMethod.mGet, handler: gameAddHandler).setMinimumRole(ssr.AuthRole.basic),
-    ];
+    ssr.RequestHandler(path: "/match/add", method: ssr.RequestMethod.mGet, handler: gameAddHandler).setMinimumRole(ssr.AuthRole.basic),
+  ];
   ssr.server(8080, handlers);
 }

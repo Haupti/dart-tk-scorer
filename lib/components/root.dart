@@ -1,7 +1,6 @@
 import 'package:ssr/html.dart' as ssr;
-import 'color.dart';
 
-String root(String title, String content){
+String root(String title, String content) {
   return """
     <!DOCTYPE HTML>
     <html lang="en" data-theme="dark">
@@ -30,14 +29,14 @@ ssr.RootPage ftkRoot(List<ssr.Component> components) {
 }
 
 class Navbar implements ssr.Component {
-  String navStyle = ssr.Style(padding: "16px", margin:"0 0 8px 0").inline();
+  String navStyle = ssr.Style(padding: "16px", margin: "0 0 8px 0").inline();
   @override
   String render() {
     return """
     <header class="navbar" style="$navStyle">
       <section class="navbar-section">
         <a class="btn btn-link" href="/"> home </a></li>
-        <a class="btn btn-link" href="/game/add"> add game </a></li>
+        <a class="btn btn-link" href="/match/add"> add match </a></li>
         <a class="btn btn-link" href="/player/manager"> manager </a></li>
       </section>
     </header>

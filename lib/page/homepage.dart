@@ -7,9 +7,10 @@ class HomePageContent implements ssr.Component{
   @override
   String render() {
     Map<String, Player> players = repo.getPlayers();
-    players.values.toList().sort((p1, p2) => p1.points().compareTo(p2.points()));
+    List<Player> sortedPlayers = players.values.toList();
+    sortedPlayers.sort((p1, p2) => p1.points().compareTo(p2.points()));
     List<String> elems = [];
-    for(final (index, player) in players.values.indexed) {
+    for(final (index, player) in sortedPlayers.reversed.indexed) {
         elems.add("""
           <tr>
             <td>${index+1}</td>

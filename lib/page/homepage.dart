@@ -7,13 +7,13 @@ class HomePageContent implements ssr.Component{
   @override
   String render() {
     Map<String, Player> players = repo.getPlayers();
-    players.values.toList().sort((p1, p2) => p1.points.compareTo(p2.points));
+    players.values.toList().sort((p1, p2) => p1.points().compareTo(p2.points()));
     List<String> elems = [];
     for(final (index, player) in players.values.indexed) {
         elems.add("""
           <tr>
             <td>${index+1}</td>
-            <td>${player.points}</td>
+            <td>${player.points()}</td>
             <td>${player.name}</td>
           </tr>
         """);

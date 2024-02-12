@@ -3,8 +3,8 @@ import 'package:ftk/domain/player.dart';
 import 'package:ftk/dataprovider/repository.dart' as repo;
 
 int calculateWinnerPrice({required Player winnerP1, required Player winnerP2, required Player looserP1, required Player looserP2}){
-  final double averageWT = (winnerP1.points + winnerP2.points)/2;
-  final double averageLT = (looserP1.points + looserP2.points)/2;
+  final double averageWT = (winnerP1.points() + winnerP2.points())/2;
+  final double averageLT = (looserP1.points() + looserP2.points())/2;
   final double winnerdiff = averageWT - averageLT;
 
   if(winnerdiff <= 50 && winnerdiff >= -50){
@@ -23,23 +23,31 @@ int calculateWinnerPrice({required Player winnerP1, required Player winnerP2, re
   return 16;
 }
 
-Error? updatePlayerScores(TkMatch match){
+String? updatePlayerScores(TkMatch match){
   Map<String, Player> players = repo.getPlayers();
   Player? t1p1 = players[match.t1Player1.toString()];
   Player? t1p2 = players[match.t1Player2.toString()];
   Player? t2p1 = players[match.t2Player1.toString()];
   Player? t2p2 = players[match.t2Player2.toString()];
   if(t1p2 == null || t1p1 == null || t2p2 == null || t2p1 == null){
-    return ArgumentError("no player with id provided by match");
+    return "A player you specified was not found";
+  }
+  if(
+    t1p1 == t1p2 || t1p1 == t2p1 || t1p1 == t2p2
+    || t1p2 == t1p1 || t1p2 == t2p1 || t1p2 == t2p2
+    || t2p1 == t1p1 || t2p1 == t1p2 || t2p1 == t2p2
+    || t2p2 == t1p1 || t2p2 == t1p2 || t2p2 == t2p1
+  ){
+    return "You cannot use the same player twice!";
   }
   
   
   if(match.winner == Winner.teamOne){
     int winnerPrice = calculateWinnerPrice(winnerP1: t1p1, winnerP2: t1p2, looserP1: t2p1, looserP2: t2p2);
-    t1p1.points += winnerPrice.round();
-    t1p2.points += winnerPrice.round();
-    t2p1.points -= winnerPrice.round();
-    t2p2.points -= winnerPrice.round();
+    t1p1.addPoints(winnerPrice.round());
+    t1p2.addPoints(winnerPrice.round());
+    t2p1.subractPoints(winnerPrice.round());
+    t2p2.subractPoints(winnerPrice.round());
     repo.upsertPlayer(t1p1);
     repo.upsertPlayer(t1p2);
     repo.upsertPlayer(t2p1);
@@ -47,10 +55,10 @@ Error? updatePlayerScores(TkMatch match){
   }
   else {
     int winnerPrice = calculateWinnerPrice(winnerP1: t2p1, winnerP2: t2p2, looserP1: t1p1, looserP2: t1p2);
-    t1p1.points -= winnerPrice.round();
-    t1p2.points -= winnerPrice.round();
-    t2p1.points += winnerPrice.round();
-    t2p2.points += winnerPrice.round();
+    t1p1.subractPoints(winnerPrice.round());
+    t1p2.subractPoints(winnerPrice.round());
+    t2p1.addPoints(winnerPrice.round());
+    t2p2.addPoints(winnerPrice.round());
     repo.upsertPlayer(t1p1);
     repo.upsertPlayer(t1p2);
     repo.upsertPlayer(t2p1);

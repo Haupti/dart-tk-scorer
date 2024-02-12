@@ -15,10 +15,10 @@ class MatchAddContent implements ssr.Component {
     """;
   }
 
-  static ssr.Component valueMissingToast() {
+  static ssr.Component errorToastMsg(String msg) {
     return ssr.Component.fromHtmlString("""
     <div class="toast toast-error" id="matchAddToastElem">
-      Something went wrong. Make sure not to use any player twice! Or you might have not provided all required data.
+      Something went wrong. $msg
     </div>
     """);
   }

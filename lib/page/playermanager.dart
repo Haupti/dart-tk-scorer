@@ -47,7 +47,7 @@ class PlayerManagerContent implements ssr.Component{
           ${ssr.renderMany(players.map((e) => playerRow(e)).toList())}
           <tr id="player-add-row">
             <form>
-              <td><input class="btn btn-primary input-grop-btn" type="submit" value="save" hx-post="/api/player/add" hx-swap="beforebegin" hx-include="[name='new-player-name']" hx-target="#player-add-row"/></td>
+              <td><input class="btn btn-primary input-group-btn" type="submit" value="save" hx-post="/api/player/add" hx-swap="beforebegin" hx-include="[name='new-player-name']" hx-target="#player-add-row"/></td>
               <td></td>
               <td><input type="text" name="new-player-name" placeholder="new player name" pattern="[a-zA-Z0-9]+([ ]?[a-zA-Z0-9]+)?"></td>
             </form>

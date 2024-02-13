@@ -58,10 +58,10 @@ class MatchAddContent implements ssr.Component {
         <div class="container">
           <div class="columns">
             <div class="column">
-              ${_renderSelect("t1p1Select", "Choose Player 1", players)}
+              ${_renderSelect("t1p1Select", "Player 1", players)}
             </div>
             <div class="column">
-              ${_renderSelect("t1p2Select", "Choose Player 2", players)}
+              ${_renderSelect("t1p2Select", "Player 2", players)}
             </div>
           </div>
         </div>
@@ -69,10 +69,10 @@ class MatchAddContent implements ssr.Component {
         <div class="container">
           <div class="columns">
             <div class="column">
-              ${_renderSelect("t2p1Select", "Choose Player 1", players)}
+              ${_renderSelect("t2p1Select", "Player 1", players)}
             </div>
             <div class="column">
-              ${_renderSelect("t2p2Select", "Choose Player 2", players)}
+              ${_renderSelect("t2p2Select", "Player 2", players)}
             </div>
           </div>
         </div>

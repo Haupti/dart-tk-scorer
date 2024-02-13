@@ -15,7 +15,7 @@ String root(String title, String content) {
         </head>
       <body>
         ${Navbar().render()}
-        <div class="p-centered" style="max-width:1000px;">
+        <div class="p-centered" style="max-width:1000px; margin: 0 32px 32px 32px;">
           $content
         </div>
       <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>

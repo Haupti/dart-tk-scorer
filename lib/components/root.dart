@@ -35,9 +35,19 @@ class Navbar implements ssr.Component {
     return """
     <header class="navbar" style="$navStyle">
       <section class="navbar-section">
-        <a class="btn btn-link" href="/"> home </a></li>
-        <a class="btn btn-link" href="/match/add"> add match </a></li>
-        <a class="btn btn-link" href="/player/manager"> manager </a></li>
+        <div class="dropdown">
+          <a class="btn btn-link dropdown-toggle" tabindex="0">menu<i class="icon icon-caret"></i></a>
+          <ul class="menu">
+            <li class="menu-item"><a class="btn btn-link" href="/">ranking</a></li>
+            <li class="menu-item"><a class="btn btn-link" href="/match/overview">matches</a></li>
+            <li class="menu-item"><a class="btn btn-link" href="/match/add">add match</a></li>
+            <li class="menu-item"><a class="btn btn-link" href="/player/manager">manager</a></li>
+          </ul>
+        </div>
+      </section>
+      <section class="navbar-section">
+        <a class="btn btn-link" href="/">home</a>
+        <a class="btn btn-link" href="/match/overview">matches</a>
       </section>
     </header>
     """;

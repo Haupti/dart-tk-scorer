@@ -22,7 +22,7 @@ void _savePlayers(){
 }
 
 void _loadPlayers() {
-  if(_cacheMatches != null){
+  if(_cachePlayers != null){
     return;
   }
   _cachePlayers ??= {};
@@ -69,6 +69,9 @@ void _saveMatches(){
 }
 
 void _loadMatches() {
+  if(_cacheMatches != null){
+    return;
+  }
   _cacheMatches ??= [];
 
   if(!_matchesFile.existsSync()){

@@ -23,7 +23,7 @@ class PlayerManagerContent implements ssr.Component{
                      <i class="icon icon-delete"></i>
                   </button>
                 </td>
-                <td>${player.id}</td>
+                <td style="max-width: 100px;text-overflow: ellipsis; overflow: hidden;">${player.id}</td>
                 <td>${player.name}</td>
               </tr>
               """);

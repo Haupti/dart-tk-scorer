@@ -9,7 +9,7 @@ class MatchAddContent implements ssr.Component {
     return """
     <label for="t1p1Select"> $labelValue </label>
     <select id="t1p1Select" name="$valueName" form="addMatchForm" class="form-select">
-      <option value="none"> Choose Player </option>
+      <option value="none">Choose Player</option>
       ${players.map((p) => """<option value="${p.id}"> ${p.name} </option>""").join("\n")}
     </select>
     """;
@@ -36,11 +36,11 @@ class MatchAddContent implements ssr.Component {
       <h2 style="margin: 16px 0;">Winner:</h2>
       <div>
         <input type="radio" id="t1WinnerId" name="$valueName" value="team1"/>
-        <label for="t1WinnerId"> Team 1 </label>
+        <label for="t1WinnerId">Team 1</label>
       </div>
       <div>
         <input type="radio" id="t2WinnerId" name="$valueName" value="team2"/>
-        <label for="t2WinnerId"> Team 2 </label>
+        <label for="t2WinnerId">Team 2</label>
       </div>
     </div>
     """;
@@ -54,7 +54,7 @@ class MatchAddContent implements ssr.Component {
     <h1> Add a Match </h1>
     <form id="addMatchForm" hx-post="/api/match/add" hx-target="#matchAddToastElem" hx-swap="outerHTML" hx-on::after-request="this.reset()">
       <div id="matchAddToastElem"></div>
-      <h2> Team 1 </h2>
+      <h2>Team 1</h2>
         <div class="container">
           <div class="columns">
             <div class="column">
@@ -65,7 +65,7 @@ class MatchAddContent implements ssr.Component {
             </div>
           </div>
         </div>
-        <h2 style="margin: 16px 0;"> Team 2 </h2>
+        <h2 style="margin: 16px 0;">Team 2</h2>
         <div class="container">
           <div class="columns">
             <div class="column">

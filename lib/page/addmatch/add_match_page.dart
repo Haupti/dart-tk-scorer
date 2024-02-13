@@ -32,16 +32,15 @@ class MatchAddContent implements ssr.Component {
 
   String _renderWinnerSelection(String valueName) {
     return """
-    <div class="container">
-      <div class="columns">
-        <div class="column col-auto">
-          <input type="radio" id="t1WinnerId" name="$valueName" value="team1"/>
-          <label for="t1WinnerId"> Team 1 </label>
-        </div>
-        <div class="column">
-          <input type="radio" id="t2WinnerId" name="$valueName" value="team2"/>
-          <label for="t2WinnerId"> Team 2 </label>
-        </div>
+    <div style="display: flex; justify-content: flex-start; align-items: baseline; gap: 32px;">
+      <h2 style="margin: 16px 0;">Winner:</h2>
+      <div>
+        <input type="radio" id="t1WinnerId" name="$valueName" value="team1"/>
+        <label for="t1WinnerId"> Team 1 </label>
+      </div>
+      <div>
+        <input type="radio" id="t2WinnerId" name="$valueName" value="team2"/>
+        <label for="t2WinnerId"> Team 2 </label>
       </div>
     </div>
     """;
@@ -77,8 +76,7 @@ class MatchAddContent implements ssr.Component {
             </div>
           </div>
         </div>
-        <h2 style="margin: 16px 0;"> Winner </h2>
-          ${_renderWinnerSelection("winner")}
+        ${_renderWinnerSelection("winner")}
         <input style="margin: 16px 0;" type="submit" class="btn btn-primary input-group-btn" value="Submit">
     </form>
     <div>

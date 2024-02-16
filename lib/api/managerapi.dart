@@ -1,7 +1,7 @@
 import 'package:ftk/domain/player.dart';
 import 'package:ftk/page/playermanager.dart';
 import 'package:ssr/ssr.dart' as ssr;
-import 'package:ftk/dataprovider/repository.dart' as repo;
+import 'package:ftk/dataprovider/player_repo.dart' as repo;
 
 ssr.RequestHandler _managerDeletePlayerApi() {
   return ssr.RequestHandler(
@@ -46,7 +46,10 @@ String? extractName(String? data) {
 
 String? extractId(String? data) {
   RegExp regex = RegExp(r'(?<==).*');
-  RegExpMatch? match = regex.firstMatch(data ?? "");
+  if (data == null) {
+    return null;
+  }
+  RegExpMatch? match = regex.firstMatch(data);
   return match?[0];
 }
 

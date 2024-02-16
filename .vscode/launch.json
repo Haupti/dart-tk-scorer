@@ -6,7 +6,7 @@
     "configurations": [
         {
             "name": "ftk",
-            "request": "run",
+            "request": "launch",
             "type": "dart"
         }
     ]

@@ -1,12 +1,12 @@
-import 'package:ftk/dataprovider/repository.dart' as repo;
+import 'package:ftk/dataprovider/match_repo.dart' as repo;
+import 'package:ftk/dataprovider/player_repo.dart' as repo;
 import 'package:ftk/domain/match.dart';
 import 'package:ftk/domain/player.dart';
 import 'package:ssr/html.dart';
 
 class MatchesOverview implements Component {
-
   @override
-  String render(){
+  String render() {
     List<TkMatch> matches = repo.getMatches();
     Map<String, Player> players = repo.getPlayers();
     return """
@@ -14,7 +14,7 @@ class MatchesOverview implements Component {
       <table class="table">
         <thead>
           <tr>
-            <th>Winner</th>
+            <th style="text-align: right;">Winner</th>
             <th>  </th>
             <th>Second Place</th>
           </tr>
@@ -22,9 +22,9 @@ class MatchesOverview implements Component {
         <tbody>
             ${matches.map((m) => """
               <tr>
-                <td>${players[m.t1Player1.toString()]?.name} & ${players[m.t1Player2.toString()]?.name}</td>
-                <td>VS</td>
-                <td>${players[m.t2Player1.toString()]?.name} & ${players[m.t2Player2.toString()]?.name}</td>
+                <td style="text-align: right;">${players[m.t1Player1.toString()]?.name ?? "(removed)"} & ${players[m.t1Player2.toString()]?.name ?? "(removed)"}</td>
+                <td style="text-align: center;">VS</td>
+                <td>${players[m.t2Player1.toString()]?.name ?? "(removed)"} & ${players[m.t2Player2.toString()]?.name ?? "(removed)"}</td>
               </tr>
             """).join("\n")}
         </tbody>

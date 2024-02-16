@@ -1,8 +1,6 @@
-import 'package:ftk/dataprovider/repository.dart' as repo;
+import 'package:ftk/dataprovider/player_repo.dart' as repo;
 import 'package:ssr/html.dart' as ssr;
 import 'package:ftk/domain/player.dart';
-
-
 
 class MatchAddContent implements ssr.Component {
   String _renderSelect(String valueName, String labelValue, List<Player> players) {
@@ -22,6 +20,7 @@ class MatchAddContent implements ssr.Component {
     </div>
     """);
   }
+
   static ssr.Component successToast() {
     return ssr.Component.fromHtmlString("""
     <div class="toast toast-success" id="matchAddToastElem">

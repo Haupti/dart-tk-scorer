@@ -32,5 +32,5 @@ void ftk() {
     addMatchApi(),
     ssr.RequestHandler(path: "/match/overview", method: ssr.RequestMethod.mGet, handler: matchesOverviewHandler).setMinimumRole(ssr.AuthRole.basic),
   ];
-  ssr.server(8080, handlers);
+  ssr.server(8081, handlers);
 }

@@ -13,7 +13,7 @@ void _savePlayers() {
 
   if (_cachePlayers?.values != null || _cachePlayers!.values.isNotEmpty) {
     String jsonPlayers = jsonEncode(_cachePlayers!.values.map((e) => e.toJson()).toList());
-    _playersFile.writeAsStringSync(jsonPlayers);
+    _playersFile.writeAsStringSync(jsonPlayers, flush: true);
   }
 }
 

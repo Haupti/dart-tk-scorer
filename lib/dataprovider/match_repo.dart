@@ -12,7 +12,7 @@ void _saveMatches() {
   }
 
   String jsonMatches = jsonEncode(_cacheMatches ?? []);
-  _matchesFile.writeAsStringSync(jsonMatches);
+  _matchesFile.writeAsStringSync(jsonMatches, flush: true);
 }
 
 void _loadMatches() {

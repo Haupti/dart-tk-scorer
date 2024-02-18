@@ -24,11 +24,11 @@ class MatchesOverview implements Component {
         <tbody>
             ${matches.map((m) => """
               <tr>
-                <td><img alt="winner icon" width="32" height="32" src="/api/resources?filename=winner.png" style="vertical-align: middle;"/></td>
+                <td>${m.winner == Winner.teamOne ? """<img alt="winner icon" width="32" height="32" src="/api/resources?filename=winner.png" style="vertical-align: middle;"/>""" : ""}</td>
                 <td style="text-align: center;">${players[m.t1Player1.toString()]?.name ?? "(removed)"} & ${players[m.t1Player2.toString()]?.name ?? "(removed)"}</td>
                 <td style="text-align: center;">VS</td>
                 <td style="text-align: center;">${players[m.t2Player1.toString()]?.name ?? "(removed)"} & ${players[m.t2Player2.toString()]?.name ?? "(removed)"}</td>
-                <td><img alt="winner icon" width="32" height="32" src="/api/resources?filename=winner.png" style="vertical-align: middle;"/></td>
+                <td>${m.winner == Winner.teamTwo ? """<img alt="winner icon" width="32" height="32" src="/api/resources?filename=winner.png" style="vertical-align: middle;"/>""" : ""}</td>
               </tr>
             """).join("\n")}
         </tbody>

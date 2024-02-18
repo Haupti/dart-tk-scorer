@@ -33,9 +33,9 @@ class TkMatch {
   Map<String, String> toJson(){
       return {
         "t1p1": t1Player1.toString(),
-        "t1p2": t1Player1.toString(),
-        "t2p1": t1Player1.toString(),
-        "t2p2": t1Player1.toString(),
+        "t1p2": t1Player2.toString(),
+        "t2p1": t2Player1.toString(),
+        "t2p2": t2Player2.toString(),
         "winner": winner.key,
       };
   }

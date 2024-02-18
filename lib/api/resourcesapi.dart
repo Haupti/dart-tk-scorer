@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:ftk/dataprovider/datapath_provider.dart';
 import 'package:ssr/ssr.dart' as ssr;
 
 ssr.RequestHandler resourcesApi() {
@@ -8,7 +9,7 @@ ssr.RequestHandler resourcesApi() {
       handler: (ssr.SsrRequest request, ssr.SsrResponse response) {
         String? filename = request.queryParams['filename'];
         String? contentType = toContentType(filename);
-        File file = File("lib/resources/$filename");
+        File file = File("${appdataPath()}/resources/$filename");
         if(contentType != null && filename != null && file.existsSync()){
           ssr.okFileResponse(response, file, ContentType.parse(contentType));
         } else if(contentType == null && filename != null && file.existsSync()){

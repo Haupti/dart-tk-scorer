@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:ftk/dataprovider/datapath_provider.dart';
 import 'package:ftk/domain/player.dart';
 
-File _playersFile = File("data/players.json");
+File _playersFile = File("${appdataPath()}/data/players.json");
 Map<String, Player>? _cachePlayers;
 
 void _savePlayers() {

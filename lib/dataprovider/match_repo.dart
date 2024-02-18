@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'package:ftk/dataprovider/datapath_provider.dart';
+
 import '../domain/match.dart';
 import 'dart:io';
 
-File _matchesFile = File("data/matches.json");
+File _matchesFile = File("${appdataPath()}/data/matches.json");
 
 List<TkMatch>? _cacheMatches;
 

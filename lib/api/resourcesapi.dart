@@ -21,8 +21,9 @@ ssr.RequestHandler resourcesApi() {
 
 final Map<String, String> fileEndingContentTypeMap  = {
   "txt": "text/plain",
-  "png": "img/png",
-  "jpg": "img/jpg",
+  "png": "image/png",
+  "jpg": "image/jpg",
+  "svg": "image/svg+xml",
   "html": "text/html"
 };
 

@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'package:ftk/api/managerapi.dart';
 import 'package:ftk/api/resourcesapi.dart';
+import 'package:ftk/dataprovider/datapath_provider.dart';
 import 'package:ftk/page/addmatch/add_match_api.dart';
 import 'package:ftk/page/matchespage.dart';
 import 'package:ssr/ssr.dart' as ssr;
@@ -34,5 +36,5 @@ void ftk() {
     ssr.RequestHandler(path: "/match/overview", method: ssr.RequestMethod.mGet, handler: matchesOverviewHandler).setMinimumRole(ssr.AuthRole.basic),
     resourcesApi(),
   ];
-  ssr.server(8081, handlers);
+  ssr.server(8081, handlers, File("${appdataPath()}auth/users.json"));
 }

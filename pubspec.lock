@@ -277,8 +277,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "153bb670f655df2f5df108d32d4f7c394e3edd8a"
-      resolved-ref: "153bb670f655df2f5df108d32d4f7c394e3edd8a"
+      ref: fc6da5b81928a48206cc71894706af212229c979
+      resolved-ref: fc6da5b81928a48206cc71894706af212229c979
       url: "git@github.com:Haupti/dart-ssr.git"
     source: git
     version: "0.1.0"

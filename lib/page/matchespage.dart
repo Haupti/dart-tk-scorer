@@ -14,17 +14,21 @@ class MatchesOverview implements Component {
       <table class="table">
         <thead>
           <tr>
-            <th style="text-align: right;">Winner</th>
-            <th>  </th>
-            <th>Second Place</th>
+            <th></th>
+            <th style="text-align: center;">Team 1</th>
+            <th></th>
+            <th style="text-align: center;">Team 2</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
             ${matches.map((m) => """
               <tr>
-                <td style="text-align: right;">${players[m.t1Player1.toString()]?.name ?? "(removed)"} & ${players[m.t1Player2.toString()]?.name ?? "(removed)"}</td>
+                <td><img alt="winner icon" width="32" height="32" src="/api/resources?filename=winner.png" style="vertical-align: middle;"/></td>
+                <td style="text-align: center;">${players[m.t1Player1.toString()]?.name ?? "(removed)"} & ${players[m.t1Player2.toString()]?.name ?? "(removed)"}</td>
                 <td style="text-align: center;">VS</td>
-                <td>${players[m.t2Player1.toString()]?.name ?? "(removed)"} & ${players[m.t2Player2.toString()]?.name ?? "(removed)"}</td>
+                <td style="text-align: center;">${players[m.t2Player1.toString()]?.name ?? "(removed)"} & ${players[m.t2Player2.toString()]?.name ?? "(removed)"}</td>
+                <td><img alt="winner icon" width="32" height="32" src="/api/resources?filename=winner.png" style="vertical-align: middle;"/></td>
               </tr>
             """).join("\n")}
         </tbody>

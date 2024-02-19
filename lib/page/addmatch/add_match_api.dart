@@ -32,5 +32,6 @@ ssr.RequestHandler addMatchApi() {
         } else {
           ssr.okPartialHtmlResponse(response, MatchAddContent.errorToastMsg("The data received was not valid."));
         }
-      });
+      },
+      ).setMinimumRole(ssr.AuthRole.basic);
 }

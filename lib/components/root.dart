@@ -1,4 +1,5 @@
 import 'package:ssr/html.dart' as ssr;
+import 'package:ssr/ssr.dart' as ssr;
 
 String root(String title, String content) {
   return """
@@ -30,6 +31,7 @@ ssr.RootPage ftkRoot(List<ssr.Component> components) {
 
 class Navbar implements ssr.Component {
   String navStyle = ssr.Style(padding: "16px", margin: "0 0 8px 0").inline();
+  ssr.AuthRole role = ssr.getCurrentAuthorizedUserRole();
   @override
   String render() {
     return """
@@ -41,7 +43,7 @@ class Navbar implements ssr.Component {
           <li class="menu-item"><a class="btn btn-link" href="/">ranking</a></li>
           <li class="menu-item"><a class="btn btn-link" href="/match/overview">matches</a></li>
           <li class="menu-item"><a class="btn btn-link" href="/match/add">add match</a></li>
-          <li class="menu-item"><a class="btn btn-link" href="/player/manager">manager</a></li>
+          ${role == ssr.AuthRole.admin ? """<li class="menu-item"><a class="btn btn-link" href="/player/manager">manager</a></li>""" : ""}
         </ul>
       </div>
       <a class="btn btn-link" href="/">home</a>

@@ -1,3 +1,4 @@
 [
-    {"username": "admin", "password": "admin", "authLevel": 3}
+    {"username": "admin", "password": "admin", "authLevel": 3},
+    {"username": "test", "password": "test", "authLevel": 1}
 ]

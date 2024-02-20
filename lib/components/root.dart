@@ -2,7 +2,7 @@ import 'package:ssr/html.dart' as ssr;
 import 'package:ssr/ssr.dart' as ssr;
 
 String root(String title, String content) {
-  return """
+   return """
     <!DOCTYPE HTML>
     <html lang="en" data-theme="dark">
       <head>
@@ -26,7 +26,8 @@ String root(String title, String content) {
 }
 
 ssr.RootPage ftkRoot(List<ssr.Component> components) {
-  return ssr.RootPage(elems: components, title: "Tischkicker Ranking", customRoot: root);
+  return ssr.RootPage(
+      elems: components, title: "Tischkicker Ranking", customRoot: root);
 }
 
 class Navbar implements ssr.Component {

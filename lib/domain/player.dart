@@ -14,12 +14,13 @@ class Id {
 class Player {
   String name;
   int _points;
+  int gamesCount;
   Id id;
 
-  Player({required this.name, required int points, required this.id}) : _points = points;
+  Player({required this.name, required int points, required this.gamesCount, required this.id}) : _points = points;
 
   static Player createNewUnknownPlayer(String name) {
-    return Player(name: name, points: 800, id: Id(nanoid()));
+    return Player(name: name, points: 800, gamesCount: 0, id: Id(nanoid()));
   }
 
   void addPoints(int price) {
@@ -42,6 +43,7 @@ class Player {
     return {
       "name": name,
       "points": _points.toString(),
+      "gamesCount": gamesCount.toString(),
       "id": id.toString(),
     };
   }
@@ -50,6 +52,7 @@ class Player {
     return Player(
       id: Id(json["id"] as String),
       name: json["name"] as String,
+      gamesCount: int.parse(json["gamesCount"] as String),
       points: int.parse(json["points"] as String),
     );
   }

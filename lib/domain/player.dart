@@ -14,13 +14,21 @@ class Id {
 class Player {
   String name;
   int _points;
-  int gamesCount;
+  int wins;
+  int losses;
   Id id;
 
-  Player({required this.name, required int points, required this.gamesCount, required this.id}) : _points = points;
+  Player(
+      {required this.name,
+      required int points,
+      required this.wins,
+      required this.losses,
+      required this.id})
+      : _points = points;
 
   static Player createNewUnknownPlayer(String name) {
-    return Player(name: name, points: 800, gamesCount: 0, id: Id(nanoid()));
+    return Player(
+        name: name, points: 800, wins: 0, losses: 0, id: Id(nanoid()));
   }
 
   void addPoints(int price) {
@@ -43,7 +51,8 @@ class Player {
     return {
       "name": name,
       "points": _points.toString(),
-      "gamesCount": gamesCount.toString(),
+      "wins": wins.toString(),
+      "losses": losses.toString(),
       "id": id.toString(),
     };
   }
@@ -52,7 +61,8 @@ class Player {
     return Player(
       id: Id(json["id"] as String),
       name: json["name"] as String,
-      gamesCount: int.parse(json["gamesCount"] as String),
+      wins: int.parse(json["wins"] as String),
+      losses: int.parse(json["losses"] as String),
       points: int.parse(json["points"] as String),
     );
   }

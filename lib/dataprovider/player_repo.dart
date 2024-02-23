@@ -45,6 +45,14 @@ void upsertPlayer(Player player) {
   _savePlayers();
 }
 
+void upsertPlayers(List<Player> players) {
+  _loadPlayers();
+  for (final player in players) {
+    _cachePlayers![player.id.toString()] = player;
+  }
+  _savePlayers();
+}
+
 void removePlayer(Id id) {
   _loadPlayers();
   _cachePlayers?.remove(id.toString());

@@ -15,7 +15,8 @@ ssr.RequestHandler _managerDeletePlayerApi() {
         } else {
           Id playerId = Id(value);
           repo.removePlayer(playerId);
-          ssr.okPartialHtmlResponse(response, PlayerManagerContent.playerDeleteSwap());
+          ssr.okPartialHtmlResponse(
+              response, PlayerManagerContent.playerDeleteSwap());
         }
       }).setMinimumRole(ssr.AuthRole.admin);
 }
@@ -25,7 +26,8 @@ ssr.RequestHandler _managerPlayerAddApi() {
       path: "/api/player/add",
       method: ssr.RequestMethod.mPost,
       handler: (ssr.SsrRequest request, ssr.SsrResponse response) {
-        String? value = extractName(request.requestData?.replaceAll(RegExp(r'%20'), " "));
+        String? value =
+            extractName(request.requestData?.replaceAll(RegExp(r'%20'), " "));
         List<Player> players = repo.getPlayers().values.toList();
         if (value == null || players.any((p) => p.name == value)) {
           ssr.clientErrorResponse(response);
@@ -33,7 +35,8 @@ ssr.RequestHandler _managerPlayerAddApi() {
         } else {
           Player player = Player.createNewUnknownPlayer(value);
           repo.upsertPlayer(player);
-          ssr.okPartialHtmlResponse(response, PlayerManagerContent.playerRow(player));
+          ssr.okPartialHtmlResponse(
+              response, PlayerManagerContent.playerRow(player));
         }
       }).setMinimumRole(ssr.AuthRole.admin);
 }
@@ -53,4 +56,7 @@ String? extractId(String? data) {
   return match?[0];
 }
 
-List<ssr.RequestHandler> managerApi = [_managerDeletePlayerApi(), _managerPlayerAddApi()];
+List<ssr.RequestHandler> managerApi = [
+  _managerDeletePlayerApi(),
+  _managerPlayerAddApi()
+];

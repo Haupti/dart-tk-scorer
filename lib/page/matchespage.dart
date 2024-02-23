@@ -34,7 +34,7 @@ class MatchesOverview implements Component {
           </tr>
         </thead>
         <tbody>
-            ${matches.map((m) => """
+            ${matches.reversed.map((m) => """
               <tr>
                 ${_winnerIcon(m.winner == Winner.teamOne)}
                 <td style="text-align: center;">${_nameOrPlaceholder(players[m.t1Player1.toString()])} & ${_nameOrPlaceholder(players[m.t1Player2.toString()])}</td>

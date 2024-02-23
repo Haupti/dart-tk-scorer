@@ -15,6 +15,7 @@ class HomePageContent implements ssr.Component {
             <td>${index + 1}</td>
             <td>${player.points()}</td>
             <td>${player.name}</td>
+            <td>${player.wins}/${player.losses}</td>
           </tr>
         """);
     }
@@ -27,6 +28,7 @@ class HomePageContent implements ssr.Component {
             <th>Rank</th>
             <th>Points</th>
             <th scope="col">Player</th>
+            <th scope="col">W/L</th>
           </tr>
         </thead>
         <tbody>

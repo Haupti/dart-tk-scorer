@@ -4,6 +4,18 @@ import 'package:ftk/domain/match.dart';
 import 'package:ftk/domain/player.dart';
 import 'package:ssr/html.dart';
 
+String _winnerIcon(bool show){
+   return """
+    <td>
+       ${show ? """<img alt="winner icon" width="32" height="32" src="/api/resources?filename=winner.svg" style="vertical-align: middle;"/>""" : ""}
+    </td>
+    """;
+}
+
+String _nameOrPlaceholder(Player? player){
+    return player?.name ?? "(removed)";
+}
+
 class MatchesOverview implements Component {
   @override
   String render() {
@@ -24,11 +36,11 @@ class MatchesOverview implements Component {
         <tbody>
             ${matches.map((m) => """
               <tr>
-                <td>${m.winner == Winner.teamOne ? """<img alt="winner icon" width="32" height="32" src="/api/resources?filename=winner.svg" style="vertical-align: middle;"/>""" : ""}</td>
-                <td style="text-align: center;">${players[m.t1Player1.toString()]?.name ?? "(removed)"} & ${players[m.t1Player2.toString()]?.name ?? "(removed)"}</td>
+                ${_winnerIcon(m.winner == Winner.teamOne)}
+                <td style="text-align: center;">${_nameOrPlaceholder(players[m.t1Player1.toString()])} & ${_nameOrPlaceholder(players[m.t1Player2.toString()])}</td>
                 <td style="text-align: center;">VS</td>
-                <td style="text-align: center;">${players[m.t2Player1.toString()]?.name ?? "(removed)"} & ${players[m.t2Player2.toString()]?.name ?? "(removed)"}</td>
-                <td>${m.winner == Winner.teamTwo ? """<img alt="winner icon" width="32" height="32" src="/api/resources?filename=winner.svg" style="vertical-align: middle;"/>""" : ""}</td>
+                <td style="text-align: center;">${_nameOrPlaceholder(players[m.t2Player1.toString()])} & ${_nameOrPlaceholder(players[m.t2Player2.toString()])}</td>
+                ${_winnerIcon(m.winner == Winner.teamTwo)}
               </tr>
             """).join("\n")}
         </tbody>

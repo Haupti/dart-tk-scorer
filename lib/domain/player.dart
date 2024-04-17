@@ -35,6 +35,10 @@ class Player {
     _points += price;
   }
 
+  int totalMatchesCount() {
+      return wins + losses;
+  }
+
   void subractPoints(int penalty) {
     if (_points - penalty < 0) {
       _points = 0;

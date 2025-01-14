@@ -42,8 +42,7 @@ void _loadPlayers() {
   }
 }
 
-Map<String, Player> _parsePlayers(String json) {
-  String content = _playersFile.readAsStringSync();
+Map<String, Player> _parsePlayers(String content) {
   if (content == "") {
     return {};
   }

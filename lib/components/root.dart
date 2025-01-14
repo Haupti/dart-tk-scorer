@@ -39,16 +39,18 @@ class Navbar implements ssr.Component {
     <header class="navbar" style="$navStyle">
       <section class="navbar-section">
       <div class="dropdown">
-        <a class="btn btn-link dropdown-toggle" tabindex="0">menu<i class="icon icon-caret"></i></a>
+        <a class="btn btn-link dropdown-toggle" tabindex="0">Menu<i class="icon icon-caret"></i></a>
         <ul class="menu">
-          <li class="menu-item"><a class="btn btn-link" href="/">ranking</a></li>
-          <li class="menu-item"><a class="btn btn-link" href="/match/overview">matches</a></li>
-          <li class="menu-item"><a class="btn btn-link" href="/match/add">add match</a></li>
-          ${role == ssr.AuthRole.admin ? """<li class="menu-item"><a class="btn btn-link" href="/player/manager">manager</a></li>""" : ""}
+          <li class="menu-item"><a class="btn btn-link" href="/">Ranking</a></li>
+          <li class="menu-item"><a class="btn btn-link" href="/match/overview">Matches</a></li>
+          <li class="menu-item"><a class="btn btn-link" href="/match/add">Add Match</a></li>
+          <li class="menu-item"><a class="btn btn-link" href="/season/2024">Season 2024</a></li>
+          ${role == ssr.AuthRole.admin ? """<li class="menu-item"><a class="btn btn-link" href="/player/manager">Manager</a></li>""" : ""}
         </ul>
       </div>
-      <a class="btn btn-link" href="/">home</a>
-      <a class="btn btn-link" href="/match/overview">matches</a>
+      <a class="btn btn-link" href="/">Home</a>
+      <a class="btn btn-link" href="/match/overview">Matches</a>
+      <a class="btn btn-link" href="/season/2024">Season 2024</a>
       </section>
     </header>
     """;

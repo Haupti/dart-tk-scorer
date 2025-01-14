@@ -5,6 +5,8 @@ import 'package:ftk/dataprovider/datapath_provider.dart';
 import 'package:ftk/domain/player.dart';
 
 File _playersFile = File("${appdataPath()}/data/players.json");
+File _seasonPlayersFile(int season) =>
+    File("${appdataPath()}/data/season/$season/players.json");
 Map<String, Player>? _cachePlayers;
 
 void _savePlayers() {
@@ -13,7 +15,8 @@ void _savePlayers() {
   }
 
   if (_cachePlayers?.values != null || _cachePlayers!.values.isNotEmpty) {
-    String jsonPlayers = jsonEncode(_cachePlayers!.values.map((e) => e.toJson()).toList());
+    String jsonPlayers =
+        jsonEncode(_cachePlayers!.values.map((e) => e.toJson()).toList());
     _playersFile.writeAsStringSync(jsonPlayers, flush: true);
   }
 }
@@ -39,6 +42,21 @@ void _loadPlayers() {
   }
 }
 
+Map<String, Player> _parsePlayers(String json) {
+  String content = _playersFile.readAsStringSync();
+  if (content == "") {
+    return {};
+  }
+
+  List<dynamic> playersJson = jsonDecode(content);
+  Map<String, Player> players = {};
+  for (var playerJson in playersJson) {
+    Player player = Player.fromJson(playerJson);
+    players[player.id.toString()] = player;
+  }
+  return players;
+}
+
 void upsertPlayer(Player player) {
   _loadPlayers();
   _cachePlayers![player.id.toString()] = player;
@@ -62,4 +80,15 @@ void removePlayer(Id id) {
 Map<String, Player> getPlayers() {
   _loadPlayers();
   return Map.from(_cachePlayers ?? {});
+}
+
+Map<String, Player> getSeasonPlayers(int season) {
+  final File seasonPlayers = _seasonPlayersFile(season);
+  if (!seasonPlayers.existsSync()) {
+    return {};
+  }
+  final Map<String, Player> players =
+      _parsePlayers(seasonPlayers.readAsStringSync());
+
+  return players;
 }

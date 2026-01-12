@@ -45,6 +45,7 @@ class Navbar implements ssr.Component {
           <li class="menu-item"><a class="btn btn-link" href="/match/overview">Matches</a></li>
           <li class="menu-item"><a class="btn btn-link" href="/match/add">Add Match</a></li>
           <li class="menu-item"><a class="btn btn-link" href="/season/2024">Season 2024</a></li>
+          <li class="menu-item"><a class="btn btn-link" href="/season/2025">Season 2025</a></li>
           ${role == ssr.AuthRole.admin ? """<li class="menu-item"><a class="btn btn-link" href="/player/manager">Manager</a></li>""" : ""}
         </ul>
       </div>

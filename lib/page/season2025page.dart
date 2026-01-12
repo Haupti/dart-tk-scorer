@@ -1,12 +1,12 @@
 import 'package:ftk/dataprovider/player_repo.dart' as repo;
 import 'package:ftk/domain/player.dart';
-import 'package:ftk/page/percent_utils.dart';
 import 'package:ssr/html.dart';
+import 'package:ftk/page/percent_utils.dart';
 
-class Season2024Page implements Component {
+class Season2025Page implements Component {
   @override
   String render() {
-    Map<String, Player> players = repo.getSeasonPlayers(2024);
+    Map<String, Player> players = repo.getSeasonPlayers(2025);
     List<Player> sortedPlayers =
         players.values.where((it) => it.totalMatchesCount() > 5).toList();
     sortedPlayers.sort((p1, p2) => p1.points().compareTo(p2.points()));
@@ -27,8 +27,8 @@ class Season2024Page implements Component {
     return """
     <div>
       <header>
-        <h1> Season 2024 Final Ranking </h1>
-        <p> End: 14.1.2025 </p>
+        <h1> Season 2025 Final Ranking </h1>
+        <p> End: 12.1.2025 </p>
       </header>
       <table class="table">
         <thead>

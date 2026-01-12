@@ -51,7 +51,7 @@ class Navbar implements ssr.Component {
       </div>
       <a class="btn btn-link" href="/">Home</a>
       <a class="btn btn-link" href="/match/overview">Matches</a>
-      <a class="btn btn-link" href="/season/2024">Season 2024</a>
+      <a class="btn btn-link" href="/season/2025">Season 2025</a>
       </section>
     </header>
     """;
